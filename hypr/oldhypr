@@ -1,0 +1,214 @@
+# Battery savings
+decoration:blur:enabled = false
+decoration:shadow:enabled = false
+
+# Thunar settings
+# opacity should be set in the css for the backgorund
+ windowrule = match:class thunar, min_size 800 800
+windowrule = match:class thunar, float on
+windowrule = match:class thunar, rounding 10
+
+windowrule = match:class thunar, move 800 150
+
+#Bluemanctl settings
+windowrule = match:class blueman-manager, min_size 800 800
+windowrule = match:class blueman-manager, float on
+windowrule = match:class blueman-manager, rounding 10
+windowrule = match:class blueman-manager, move 800 150
+
+#flamshot rules
+windowrule = match:class fireshot, min_size 800 800
+windowrule = match:class fireshot, float on
+windowrule = match:class fireshot, rounding 10
+windowrule = match:class fireshot, move 800 150
+
+windowrule = match:class hyprtodo, min_size 800 800
+windowrule = match:class hyprtodo, float on
+windowrule = match:class hyprtodo, rounding 10
+windowrule = match:class hyprtodo, move 800 150
+
+
+
+
+
+
+# Rounded corners (global or per-window)
+#decoration {
+#    rounding = 10
+#}
+
+# Monitor setup (adjust as needed)
+monitor=,preferred,auto,1
+
+# Autostart
+exec-once = waybar
+exec-once = blueman-applet
+# exec-once = firefox
+exec-once = hyprpaper
+exec-once = flameshot
+exec-once = hypridle
+exec-once = hyprtodo
+exec-once = /home/archslayer/.local/bin/hyprtodo
+
+# Environment
+env = XCURSOR_SIZE,24
+
+# Input configuration
+input {
+    kb_layout = us
+    kb_options = caps:escape
+    follow_mouse = 0
+    touchpad {
+        natural_scroll = no
+    }
+    sensitivity = 0
+}
+
+# General settings
+#general {
+#    gaps_in = 5
+#    gaps_out = 10
+#    border_size = 2
+#    col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
+#    col.inactive_border = rgba(595959aa)
+#    layout = dwindle
+#}
+
+general {
+    border_size = 1
+    gaps_in = 0
+    gaps_out = 0
+    col.active_border = rgba(ffffffff)
+    col.inactive_border = rgba(00000000)
+    layout = master
+}
+
+# Decoration
+decoration {
+    rounding = 0
+    blur {
+        enabled = false
+    }
+}
+groupbar {
+
+}
+
+
+# Or target just Thunar
+# windowrulev2 = rounding 10,class:^(thunar)$
+
+
+
+# Animations
+animations {
+    enabled = false
+    bezier = myBezier, 0.05, 0.9, 0.1, 1.05
+    animation = windows, 1, 7, myBezier
+    animation = windowsOut, 1, 7, default, popin 80%
+    animation = border, 1, 10, default
+    animation = borderangle, 1, 8, default
+    animation = fade, 1, 7, default
+    animation = workspaces, 1, 6, default
+}
+
+# Layout
+dwindle {
+    # pseudotile = yes
+    preserve_split = yes # Command no longer exists
+}
+
+
+# Window rules
+
+# Key bindings
+$mod = SUPER
+
+# Application launches
+bind = $mod, RETURN, exec, kitty
+bind = $mod, Q, killactive,
+bind = $mod, F, fullscreen,
+bind = $mod, C, exec, swaylock
+bind = $mod, B, exec, firefox
+bind = $mod, R, exec, rofi -show drun
+bind = $mod, E, exec, rofi -show
+bind = $mod, T, exec, ~/.rofi/powerscript
+bind = $mod SHIFT, T, exec, ~/.rofi/tlp-profile.sh
+bind = $mod SHIFT, S, exec, systemctl suspend
+
+# Window management
+# Move focus between monitors (what you want on Super+Ctrl+P/O)
+bind = SUPER CTRL, J, focusmonitor, +1
+bind = SUPER CTRL, K, focusmonitor, -1
+
+# Switch workspaces on current monitor only (Super+P/O)
+bind = SUPER, P, workspace, m+1
+bind = SUPER, O, workspace, m-1
+
+
+bind = $mod, J, layoutmsg, cyclenext
+bind = $mod, K, layoutmsg, cycleprev
+# bind = $mod, H, movefocus, l # H and L should change the sice fo the window, not focus on the next
+# bind = $mod, L, movefocus, r
+
+bind = $mod SHIFT, J, movewindow, d
+bind = $mod SHIFT, K, movewindow, u
+bind = $mod SHIFT, H, movewindow, l
+bind = $mod SHIFT, L, movewindow, r
+
+# Resize
+bind = $mod, L, resizeactive, 50 0
+bind = $mod, H, resizeactive, -50 0
+
+# Workspace navigation
+# bind = $mod, O, workspace, e-1
+# bind = $mod, P, workspace, e+1
+
+# Switch workspaces
+bind = $mod, 1, workspace, 1
+bind = $mod, 2, workspace, 2
+bind = $mod, 3, workspace, 3
+bind = $mod, 4, workspace, 4
+bind = $mod, 5, workspace, 5
+bind = $mod, 6, workspace, 6
+bind = $mod, 7, workspace, 7
+bind = $mod, 8, workspace, 8
+bind = $mod, 9, workspace, 9
+
+# Move window to workspacmod SHIFT, 1, movetoworkspace, 1
+bind = $mod SHIFT, 2, movetoworkspace, 2
+bind = $mod SHIFT, 3, movetoworkspace, 3
+bind = $mod SHIFT, 4, movetoworkspace, 4
+bind = $mod SHIFT, 5, movetoworkspace, 5
+bind = $mod SHIFT, 6, movetoworkspace, 6
+bind = $mod SHIFT, 7, movetoworkspace, 7
+bind = $mod SHIFT, 8, movetoworkspace, 8
+bind = $mod SHIFT, 9, movetoworkspace, 9
+
+# Toggle floating
+bind = $mod CTRL, SPACE, togglefloating,
+
+# Volume controls
+bind = $mod, bracketright, exec, pactl set-sink-volume @DEFAULT_SINK@ +5%
+bind = $mod, bracketleft, exec, pactl set-sink-volume @DEFAULT_SINK@ -5%
+bind = $mod, equal, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# Brightness
+bind = $mod, semicolon, exec, brightnessctl set +5%
+bind = $mod SHIFT, semicolon, exec, brightnessctl set 5%-
+
+# Mouse bindings
+bindm = $mod, mouse:272, movewindow
+bindm = $mod, mouse:273, resizewindow
+
+# Things I am putting in
+bind = $mod, M, fullscreen, 1
+
+# Misc
+misc {
+    disable_hyprland_logo = true
+}
+
+cursor {
+    no_hardware_cursors = true
+}
