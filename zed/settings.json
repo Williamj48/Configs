@@ -1,0 +1,72 @@
+
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "cli_default_open_behavior": "existing_window",
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "git_panel": {
+    "dock": "left"
+  },
+  "format_on_save": "off",
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry"
+    }
+  },
+  "agent": {
+    "dock": "right",
+    "default_model": {
+      "provider": "ollama",
+      "model": "llama3.2:3b",
+      "enable_thinking": false
+    },
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "tab_bar": {
+    "show": false
+  },
+  "terminal": {
+    "dock": "right",
+	"detect_venv": {
+		"on": {
+        // Default directories to search for virtual environments, relative
+        // to the current working directory. We recommend overriding this
+        // in your project's settings, rather than globally.
+        "directories": ["env", ".venv", "venv"],
+        // Can also be `csh`, `fish`, and `nushell`
+        "activate_script": "default"
+      }
+    }
+
+  },
+
+
+
+  "autosave": "on_focus_change",
+  "vim_mode": true,
+  "show_completions_on_input": false,
+  "show_edit_predictions": false,
+  //"justMyCode": false,
+  "buffer_font_size": 18,
+  "ui_font_size": 18,
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)"
+  },
+  "theme": {
+    "mode": "dark",
+    "light": "Ayu Light",
+    "dark": "Ayu Dark"
+  },
+  "code_lens":"on"
+}
